@@ -32,8 +32,8 @@ function Homepage_slick() {
   return (
     <div className="slick homepage relative">
       <div className="hidden sm:flex gap-10 absolute bottom-28 right-40 z-10">
-        <Hero_card title="Pakistan Floods"/>
-        <Hero_card title="Support an orphan child"/>
+        {/* <Hero_card title="Pakistan Floods"/>
+        <Hero_card title="Support an orphan child"/> */}
       </div>
       <Slider {...settings}>
         <div>

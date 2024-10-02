@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Appeals_options from "../../homepage/components/appeals_options";
 import Zakat_options from "../../homepage/components/zakat_options";
 import Emergency_options from "../../homepage/components/emergency_options";
@@ -13,6 +13,7 @@ function Generic_header_1() {
   const [emergencyOptions, setEmergencyOptions] = React.useState(false)
   const [donate, setDonate] = React.useState(false)
   const [quickDonate, setQuickDonate] = React.useState(false)
+  const [showForm, setShowForm] = useState(false)
 
   return (
     <div className="">
@@ -65,9 +66,13 @@ function Generic_header_1() {
           <div className="flex gap-2 justify-between items-center">
             <a href="#">
               <div className="flex gap-4 items-center mr-4 group relative">
-                <div className="hidden group-hover:block absolute top-8 left-[-25rem] z-10"><Login/></div>
+                <div className={`${showForm ? "block" : "hidden"} absolute top-8 left-[-25rem] z-10`}>
+                  <Login setShowForm={setShowForm}/>
+                </div>
                 <img src="./icons/user-circle-black.svg" className="w-8"></img>
-                <p className="text-[1.4rem] font-semibold tracking-[-0.21px] text-black whitespace-nowrap">My Account</p>
+                <p className="text-[1.4rem] font-semibold tracking-[-0.21px] text-black whitespace-nowrap"
+                  onClick={()=> setShowForm((prevState=> !prevState))}
+                >My Account</p>
               </div>
             </a>
             <a href="#" className="mr-6">
