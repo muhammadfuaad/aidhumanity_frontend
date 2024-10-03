@@ -27,9 +27,24 @@ import Achievements_slick from './../achievements_slick';
 import General_slick from "../general_slick";
 import Events_slick from './../events_slick';
 import Homepage_slick from "../homepage_slick";
+import { useEffect, useState } from "react";
 // import Homepage_slick from './../homepage_slick';
+import axiosInstance from "../utils/axiosInstance";
 
 function Home_page() {
+  const [appeals, setAppeals] = useState([])
+
+  useEffect(()=>{
+    axiosInstance
+      .get("/appeals")
+      .then((response) => {
+        console.log("response:", response);
+        setAppeals(response.data.data)
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      });
+  }, [])
   return (
     <section className="overflow-hidden">
       <div className="hidden sm:block">< Generic_header_1 /></div>
@@ -37,7 +52,7 @@ function Home_page() {
       <Homepage_slick/>
       <div className="flex flex-col px-8 sm:px-48 bg-[#f9f9f9] mb-[-35rem] sm:mb-[-27rem] pb-40">
         <p className="self-center text-center sm:self-start generic-subheading mt-16 sm:mt-36 mb-16 sm:mb-28">Appeals <span className="font-medium">that need your backing</span></p>
-        <General_slick card=<Appeal_card/> number_of_elements={3}/> 
+        <General_slick card=<Appeal_card/> number_of_elements={3} appeals={appeals}/> 
         <button className="self-center sm:hidden mt-20 px-10 py-6 text-[1.4rem] font-semibold text-primary-dark bg-transparent outline
         outline-spanish-gray rounded-xl sm:self-auto">View All</button>        
       </div>
