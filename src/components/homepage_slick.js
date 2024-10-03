@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Homepage_hero_slider from "./homepage/components/homepage_hero_slider";
 import Hero_card from "./homepage/components/hero_card";
 
-function Homepage_slick() {
+function Homepage_slick({appeals}) {
   const settings = {
     arrows: true,
     infinite: true,
@@ -36,26 +36,18 @@ function Homepage_slick() {
         <Hero_card title="Support an orphan child"/> */}
       </div>
       <Slider {...settings}>
-        <div>
-          <Homepage_hero_slider
-          title= <p>Build<br></br> a Water Well</p>
-          content= "1 in 3 people around the world do not have access to clean drinking water. Women and children often walk for miles each day to collect water to drink, denying them the opportunity to go to school, to work and to thrive."
-          category= "Water for all"/>
-        </div>
-        <div>
-          <Homepage_hero_slider
-          title= "Yemen Emergency"
-          content= "1 in 3 people around the world do not have access to clean drinking water. Women and children often walk for miles each day to collect water to drink, denying them the opportunity to go to school, to work and to thrive."
-          category= "Water for all"
-          />
-        </div>
-        <div>
-          <Homepage_hero_slider
-          title= "Rohingya Appeal"
-          content= "1 in 3 people around the world do not have access to clean drinking water. Women and children often walk for miles each day to collect water to drink, denying them the opportunity to go to school, to work and to thrive."
-          category= "Water for all"
-          />
-        </div>
+        {appeals.map((appeal)=> {
+          const {title, description, campaign} = appeal
+          return (
+            <div>
+              <Homepage_hero_slider
+                title={title}
+                content={description}
+                category={campaign}
+              />
+            </div>
+          );
+        })}
       </Slider>
     </div>
   );

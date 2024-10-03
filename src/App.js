@@ -89,7 +89,7 @@ import Homepage_hero_slider_collection from './components/homepage_hero_slider_c
 import Appeals_slick from './components/appeals_slick';
 
 function App() {
-  return (    
+  return (
     <Routes>
       <Route path="/tailwind_slider" element={<Tailwind_slider />} />
       <Route path="/image_slider_page" element={<Image_slider_page />} />
@@ -134,16 +134,26 @@ function App() {
       <Route path="/badge_bronze" element={<Badge_bronze />} />
       {/* appeals */}
       <Route path="/appeal_media_page" element={<Appeal_media_page />} />
-      <Route path="/appeal_donations_page" element={<Appeal_donations_page />} />
+      <Route
+        path="/appeal_donations_page"
+        element={<Appeal_donations_page />}
+      />
       <Route path="/appeal_view_page" element={<Appeal_view />} />
       <Route path="/appeal_settings_page" element={<Appeal_settings_page />} />
       <Route path="/appeal_edit_page" element={<Appeal_edit_page />} />
-      <Route path="/appeal_details_donator_page" element={<Appeal_details_donator_page />} />
-      <Route path="/appeal_details_fundraiser_page" element={<Appeal_details_fundraiser_page />} />
-
+      <Route
+        path="/appeal_details_donator_page"
+        element={<Appeal_details_donator_page />}
+      />
+      <Route
+        path="/appeal_details_fundraiser_page"
+        element={<Appeal_details_fundraiser_page />}
+      />
 
       <Route path="/dashboard_layout" element={<Dashboard_layout />} />
       <Route path="/appeal_view" element={<Appeal_view />} />
+      <Route path="/appeal_view/:_id" element={<Appeal_view />} />
+
       <Route path="/appeal_share" element={<Appeal_share />} />
       <Route path="/appeal_media" element={<Appeal_media />} />
 
@@ -160,7 +170,10 @@ function App() {
       <Route path="/share" element={<Share />} />
       <Route path="/image_upload" element={<Image_upload />} />
       <Route path="/badge_bronze" element={<Badge_bronze />} />
-      <Route path="/circular_progress_bar" element={<Circular_progress_bar />} />
+      <Route
+        path="/circular_progress_bar"
+        element={<Circular_progress_bar />}
+      />
 
       {/* menu options */}
       <Route path="/menu" element={<Menu />} />
@@ -172,12 +185,16 @@ function App() {
       <Route path="/donate_now" element={<Donate_now />} />
       <Route path="/filters" element={<Filters />} />
 
-      <Route path="/donation_history_pagination" element={<Donation_history_pagination />} />
+      <Route
+        path="/donation_history_pagination"
+        element={<Donation_history_pagination />}
+      />
       <Route path="/homepage_slider" element={<Homepage_slider />} />
-      <Route path="/homepage_hero_slider" element={<Homepage_hero_slider_collection />} />
+      <Route
+        path="/homepage_hero_slider"
+        element={<Homepage_hero_slider_collection />}
+      />
       <Route path="/appeals_slick" element={<Appeals_slick />} />
-
-
     </Routes>
   );
 }

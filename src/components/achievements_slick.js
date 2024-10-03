@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Achievement from "./generic/components/achievement";
 
-function Achievements_slick() {
+function Achievements_slick({successfulAppeals}) {
     const settings = {
       dots: true,
       arrows: false,
@@ -29,24 +29,14 @@ function Achievements_slick() {
     return (
       <div className="slick achievements">
         <Slider {...settings}>
-          <div>
-            <Achievement/>
-          </div>
-          <div>
-            <Achievement/>
-          </div>
-          <div>
-            <Achievement/>
-          </div>
-          <div>
-            <Achievement/>
-          </div>
-          <div>
-            <Achievement/>
-          </div>
-          <div>
-            <Achievement/>
-          </div>
+          {successfulAppeals.map((appeal)=> {
+            const {title, collected_amount, total_supporters} = appeal
+            return (
+              <div>
+                <Achievement title={title} collected_amount={collected_amount} total_supporters={total_supporters} />
+              </div>
+            );
+          })}
         </Slider>
       </div>
     );

@@ -33,6 +33,8 @@ import axiosInstance from "../utils/axiosInstance";
 
 function Home_page() {
   const [appeals, setAppeals] = useState([])
+  const [successfulAppeals, setSuccessfulAppeals] = useState([]);
+
 
   useEffect(()=>{
     axiosInstance
@@ -45,11 +47,20 @@ function Home_page() {
         console.log("error:", error);
       });
   }, [])
+
+  useEffect(()=>{
+    setSuccessfulAppeals(appeals.filter(
+      (appeal) => appeal.collected_amount >= appeal.targeted_amount
+    ))
+  }, [appeals])
+
+  useEffect(()=>{console.log('successfulAppeals:', successfulAppeals);}, [successfulAppeals])
+
   return (
     <section className="overflow-hidden">
       <div className="hidden sm:block">< Generic_header_1 /></div>
       <div className="sm:hidden block">< Home_page_header_mobile /></div>
-      <Homepage_slick/>
+      <Homepage_slick appeals={appeals}/>
       <div className="flex flex-col px-8 sm:px-48 bg-[#f9f9f9] mb-[-35rem] sm:mb-[-27rem] pb-40">
         <p className="self-center text-center sm:self-start generic-subheading mt-16 sm:mt-36 mb-16 sm:mb-28">Appeals <span className="font-medium">that need your backing</span></p>
         <General_slick card=<Appeal_card/> number_of_elements={3} appeals={appeals}/> 
@@ -71,7 +82,7 @@ function Home_page() {
       <Passionate/>
       <div className="flex flex-col gap-16 sm:gap-24 px-8 sm:px-48 pt-24 pb-32 bg-[#f1f1f1]">
         <p className="self-center generic-subheading text-center sm:text-start">Our Achievements<span className="font-semibold"> with your help and more …</span></p>
-        <Achievements_slick/>
+        <Achievements_slick successfulAppeals={successfulAppeals} />
       </div>     
       <section>
         <div className="flex flex-col sm:flex-row items-center px-8 py-16 space-y-2 bg-primary sm:px-48">

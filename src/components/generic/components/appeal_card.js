@@ -1,10 +1,12 @@
 import React from "react";
 import User from "../../icons/user-circle-black.svg";
 import Circular_progress_bar_2 from "../../dashboard/circular_progress_bar_2";
+import { useNavigate } from "react-router-dom";
 
 function Appeal_card({appeal}) {
-  const {title, description, targeted_amount, collected_amount, image, campaign, category, total_supporters} = appeal
+  const {_id, title, description, targeted_amount, collected_amount, image, campaign, category, total_supporters} = appeal
   const [display, setDisplay] = React.useState(false);
+  const navigate = useNavigate()
 
   function truncateString(str, num) {
     return str.length > num ? str.slice(0, num) + "..." : str;
@@ -28,10 +30,7 @@ function Appeal_card({appeal}) {
 
           <div className="flex gap-4 items-center mt-12">
             <div className="w-1/5">
-              {/* <Circular_progress_bar_3 percentage="50" fontSize="2" /> */}
               <Circular_progress_bar_2 percentage={collected_amount/targeted_amount * 100} fontSize="2" />
-              {/* <Circular_progress_bar_1 percentage="50" fontSize="2" /> */}
-              {/* <Circular_progress_bar percentage="100" fontSize="2" /> */}
             </div>
             <div className="flex flex-col w-4/5 text-[1.1rem] font-semibold tracking-[-0.17px]">
               <div className="flex justify-between mb-1">
@@ -64,7 +63,8 @@ function Appeal_card({appeal}) {
           </div>
         </div>
         <div className="flex justify-between items-center py-10">
-          <p className="text-[1.2rem] font-semibold tracking-[-0.18px] text-primary-dark">
+          <p className="text-[1.2rem] font-semibold tracking-[-0.18px] text-primary-dark cursor-pointer"
+            onClick={()=> navigate(`/appeal_view/${_id}`)}>
             Read More
           </p>
           <button className="px-12 h-20 py-6 uppercase text-[1.4rem] font-semibold text-white bg-primary rounded-xl">
