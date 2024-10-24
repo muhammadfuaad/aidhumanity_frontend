@@ -33,6 +33,7 @@ import axiosInstance from "../utils/axiosInstance";
 
 function Home_page() {
   const [appeals, setAppeals] = useState([])
+  const [campaigns, setCampaigns] = useState([]);
   const [successfulAppeals, setSuccessfulAppeals] = useState([]);
 
 

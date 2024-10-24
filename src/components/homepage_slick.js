@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Homepage_hero_slider from "./homepage/components/homepage_hero_slider";
 import Hero_card from "./homepage/components/hero_card";
+import { truncateString } from "./utils/commonMethods";
 
 function Homepage_slick({appeals}) {
   const settings = {
@@ -38,11 +39,13 @@ function Homepage_slick({appeals}) {
       <Slider {...settings}>
         {appeals.map((appeal)=> {
           const {title, description, campaign} = appeal
+          const content = truncateString(description, 150);
+
           return (
             <div>
               <Homepage_hero_slider
                 title={title}
-                content={description}
+                content={content}
                 category={campaign}
               />
             </div>

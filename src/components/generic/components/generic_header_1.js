@@ -6,6 +6,7 @@ import Login from '../../menu_options/pages/login';
 import Heart from "../../homepage/components/heart"
 import Donate_now from './../../menu_options/pages/donate_now';
 import Quick_donate from "../../menu_options/pages/quick_donate";
+import { useNavigate } from "react-router-dom";
 
 function Generic_header_1() {
   const [appealsOptions, setAppealsOptions] = React.useState(false)
@@ -15,6 +16,7 @@ function Generic_header_1() {
   const [quickDonate, setQuickDonate] = React.useState(false)
   const [showForm, setShowForm] = useState(false)
 
+  const navigate = useNavigate()
   return (
     <div className="">
       <div className="flex justify-between px-48 text-[1.4rem] font-medium tracking-[-0.21px] text-[#999] py-4 border-b border-platinum">
@@ -56,7 +58,14 @@ function Generic_header_1() {
                 ">
               <li><a href="#" className="whitespace-nowrap">Our Story</a></li>
               <li className="group">
-                <a href="#" className="whitespace-nowrap" onClick={()=>setAppealsOptions(current=> !current)}>Appeals</a>
+                <a className="whitespace-nowrap cursor-pointer" 
+                  onClick={()=>{
+                      setAppealsOptions(current=> !current)
+                      navigate('/appeals')
+                    }}
+                  >
+                    Appeals
+                  </a>
               </li>
               <li><a href="#" className="whitespace-nowrap" onClick={()=>setEmergencyOptions(current=> !current)}>Emergency</a></li>
               <li><a href="#" className="whitespace-nowrap" onClick={()=>setZakatOptions(current=> !current)}>Zakat</a></li>

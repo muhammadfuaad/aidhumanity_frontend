@@ -2,23 +2,20 @@ import React from "react";
 import User from "../../icons/user-circle-black.svg";
 import Circular_progress_bar_2 from "../../dashboard/circular_progress_bar_2";
 import { useNavigate } from "react-router-dom";
-
+import {truncateString} from "../../utils/commonMethods"
 function Appeal_card({appeal}) {
   const {_id, title, description, targeted_amount, collected_amount, image, campaign, category, total_supporters} = appeal
   const [display, setDisplay] = React.useState(false);
   const navigate = useNavigate()
 
-  function truncateString(str, num) {
-    return str.length > num ? str.slice(0, num) + "..." : str;
-  }
   return (
-    <div className="w-full bg-white shadow-md rounded-3xl relative">
+    <div className="w-full bg-white shadow-md rounded-3xl relative border border-blue-500">
       <div className="rounded-xl  bg-black bg-opacity-50 px-8 py-4 absolute top-4 right-4">
         <p className="text-[1.4rem] font-medium tracking-[-0.21px] text-platinum">
           {campaign}
         </p>
       </div>
-      <img src={image} className="max-h-80 w-full"></img>
+      <img src={image} className="max-h-80 w-full rounded-t-3xl"></img>
       <div className="px-8">
         <div className="py-12 border-b-2 border-platinum">
           <p className="text-[2.2rem] font-bold tracking-[-0.55px] text-black mb-8">

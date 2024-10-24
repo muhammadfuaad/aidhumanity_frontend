@@ -8,7 +8,7 @@ function Homepage_hero_slider(props) {
       <img src={decorators} className="absolute right-0 bottom-40 hidden sm:block"></img>
       
       <div className="absolute top-80 right-[30rem] hidden sm:block"><Percentage_vertical/></div>
-      <button className="opacity-[75%] mt-8 sm:mt-40 mb-6 self-start px-8 py-3 text-[1.4rem] font-semibold text-white bg-transparent outline outline-white rounded-xl">{props.category}</button>
+      <button className="opacity-[75%] mt-8 mb-6 self-start px-8 py-3 text-[1.4rem] font-semibold text-white bg-transparent outline outline-white rounded-xl">{props.category}</button>
 
       <div className="sm:w-[65%]">
         <p className="text-start text-white text-[5rem] font-bold tracking-[-0.75px] mb-12 sm:mb-6">{props.title}</p>
@@ -17,8 +17,7 @@ function Homepage_hero_slider(props) {
 
       <div className="flex gap-12 items-center">
       <button className='p-8 uppercase text-[1.4rem] font-semibold text-white bg-primary rounded-xl 
-              flex space-x-4 justify-center items-center'>
-        
+        flex space-x-4 justify-center items-center'>
         <span>Donate Now</span>
         <Arrow stroke="#fff"/>
       </button>

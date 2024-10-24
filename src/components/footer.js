@@ -68,6 +68,7 @@ function Footer() {
           <div className="flex flex-col basis-[20%]">
             <span className="text-[1.4rem] font-semibold tracking-[-0.21px] text-white leading-[1.6rem] mb-8">APPEALS</span>
             <ul className="text-[1.6rem] font-medium tracking-[-0.24px] text-[#8892ac] leading-[3rem]">
+              
               <li><a href="#" className="hover:underline">Build a Mosque</a></li>
               <li><a href="#" className="hover:underline">Disaster & Emergency</a></li>
               <li><a href="#" className="hover:underline">Appeals</a></li>

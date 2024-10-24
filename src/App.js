@@ -87,6 +87,7 @@ import Donation_history_pagination from './components/donation_history_paginatio
 import Homepage_slider from './components/homepage_slider';
 import Homepage_hero_slider_collection from './components/homepage_hero_slider_collection';
 import Appeals_slick from './components/appeals_slick';
+import AppealsPage from './components/appeals/pages/AppealsPage';
 
 function App() {
   return (
@@ -109,7 +110,10 @@ function App() {
       <Route path="/rewards_page" element={<Rewards_page />} />
       <Route path="/terms_page" element={<Terms_page />} />
       <Route path="/privacy_policy_page" element={<Privacy_policy_page />} />
-      <Route path="/zakat_calculator_page" element={<Zakat_calculator_page />} />
+      <Route
+        path="/zakat_calculator_page"
+        element={<Zakat_calculator_page />}
+      />
       <Route path="/blog_page" element={<Blog_page />} />
       <Route path="/blog_article_page" element={<Blog_article_page />} />
       <Route path="/appeals_index_page" element={<Appeals_index_page />} />
@@ -125,9 +129,15 @@ function App() {
       <Route path="/portal" element={<Portal />} />
       <Route path="/payment_methods_page" element={<Payment_methods_page />} />
       <Route path="/profile_page" element={<Profile_page />} />
-      <Route path="/monthly_donations_page" element={<Monthly_donations_page />} />
+      <Route
+        path="/monthly_donations_page"
+        element={<Monthly_donations_page />}
+      />
       <Route path="/preferences_page" element={<Preferences_page />} />
-      <Route path="/donation_history_page" element={<Donation_history_page />} />
+      <Route
+        path="/donation_history_page"
+        element={<Donation_history_page />}
+      />
       <Route path="/security_page" element={<Security_page />} />
       <Route path="/fundraising_page" element={<Fundraising_page />} />
       <Route path="/dashboard_page" element={<Dashboard_page />} />
@@ -164,6 +174,7 @@ function App() {
       <Route path="/appeal_settings" element={<Appeal_settings />} />
       <Route path="/appeal_cancel" element={<Appeal_cancel />} />
       <Route path="/appeal_edit" element={<Appeal_edit />} />
+      <Route path="/appeals" element={<AppealsPage />} />
 
       <Route path="/" element={<Home_page />} />
 
