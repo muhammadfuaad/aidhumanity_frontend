@@ -52,7 +52,7 @@ function Generic_header_1() {
           <div className="flex justify-between w-[65%]">
             <div className="relative">
               <img src="./icons/primary-horizontal-logo.png" className="w-[23rem]"></img>
-              <div className="bg-platinum h-20 w-[1px] absolute top-0 -right-24"></div>
+              {/* <div className="bg-platinum h-20 w-[1px] absolute top-0 -right-24"></div> */}
             </div>
             <ul className="w-[65%] flex justify-between items-center text-[1.8rem] font-semibold tracking-[-0.27px] text-black
                 ">
