@@ -21,11 +21,11 @@ function Appeal_card({appeal}) {
           <p className="text-[2.2rem] font-bold tracking-[-0.55px] text-black mb-8">
             {title}
           </p>
-          <p className="text-[1.6rem] font-normal tracking-[-0.4px] leading-[2.4rem] text-body">
+          <p className="text-[1.6rem] font-normal tracking-[-0.4px] leading-[2.4rem] h-[6rem] text-body">
             {truncateString(description, 100)}
           </p>
 
-          <div className="flex gap-4 items-center mt-12">
+          <div className="flex gap-4 items-center mt-16">
             <div className="w-1/5">
               <Circular_progress_bar_2 percentage={collected_amount/targeted_amount * 100} fontSize="2" />
             </div>
