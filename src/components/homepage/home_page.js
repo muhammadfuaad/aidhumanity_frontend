@@ -43,12 +43,16 @@ function Home_page() {
       .then((response) => {
         console.log("response:", response);
         setAppeals(response.data.data)
+        setCampaigns([...new Set(response.data.data.map((item) => ({name: item.campaign, image: item.campaignImage})))]);
       })
       .catch((error) => {
         console.log("error:", error);
       });
   }, [])
 
+  useEffect(()=>{
+    console.log('campaigns:', campaigns);
+  }, [campaigns])
   useEffect(()=>{
     setSuccessfulAppeals(appeals.filter(
       (appeal) => appeal.collected_amount >= appeal.targeted_amount
@@ -79,12 +83,14 @@ function Home_page() {
         </div>
         <p className="flex basis-[50%] items-center justify-center text-primary-dark text-[2rem] sm:text-[2.4rem] font-semibold tracking-[-0.5px] sm:tracking-[-0.6px] leading-[2.8rem] px-10 sm:px-10 text-center">Give Back - Deliver Better - Drive Change</p>
       </section>
-      <Helped/>
+      <Helped campaigns={campaigns}/>
       <Passionate/>
-      <div className="flex flex-col gap-16 sm:gap-24 px-8 sm:px-48 pt-24 pb-32 bg-[#f1f1f1]">
-        <p className="self-center generic-subheading text-center sm:text-start">Our Achievements<span className="font-semibold"> with your help and more …</span></p>
-        <Achievements_slick successfulAppeals={successfulAppeals} />
-      </div>     
+      {successfulAppeals.length > 0 && 
+        <div className="flex flex-col gap-16 sm:gap-24 px-8 sm:px-48 pt-24 pb-32 bg-[#f1f1f1]">
+          <p className="self-center generic-subheading text-center sm:text-start">Our Achievements<span className="font-semibold"> with your help and more …</span></p>
+          <Achievements_slick successfulAppeals={successfulAppeals} />
+        </div>
+      }     
       <section>
         <div className="flex flex-col sm:flex-row items-center px-8 py-16 space-y-2 bg-primary sm:px-48">
           <p className="text-white text-[1.8rem] font-semibold tracking-[-0.45px] leading-[28px] basis-[70%]">Faithful believers are to each other as the bricks of a wall, supporting and reinforcing each other.<br></br>So saying, the Prophet Muhammad clasped his hands by interlocking his fingers.</p>

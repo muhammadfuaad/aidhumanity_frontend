@@ -43,7 +43,7 @@ function Appeal_card({appeal, setLoadData}) {
 
           <div className="flex gap-4 items-center mt-16">
             <div className="w-1/5">
-              <Circular_progress_bar_2 percentage={collected_amount/targeted_amount * 100} fontSize="2" />
+              <Circular_progress_bar_2 percentage={Math.round(collected_amount/targeted_amount * 100)} fontSize="2" />
             </div>
             <div className="flex flex-col w-4/5 text-[1.1rem] font-semibold tracking-[-0.17px]">
               <div className="flex justify-between mb-1">

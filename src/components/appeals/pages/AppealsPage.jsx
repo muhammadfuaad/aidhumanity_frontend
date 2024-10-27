@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axiosInstance from '../../utils/axiosInstance';
 import Appeal_card from '../../generic/components/appeal_card';
 import { Dropdown } from 'primereact/dropdown';
+import { useLocation } from 'react-router-dom';
 
 const AppealsPage = () => {
   const [appeals, setAppeals] = useState([]);
@@ -10,15 +11,17 @@ const AppealsPage = () => {
   const [campaigns, setCampaigns] = useState([])
   const [loadData, setLoadData] = useState(false)
 
+  const {state} = useLocation();
+  console.log('state:', state);
+  useEffect(()=>{setAppealsType(state?.name || "All Appeals")}, [state])
+  
   useEffect(() => {
     axiosInstance
       .get("/appeals")
       .then((response) => {
         console.log("response:", response);
         setAppeals(response.data.data);
-        // setCampaigns([new Set(response.data.data.map((item)=> item.campaign))])
         setCampaigns([...new Set(response.data.data.map((item) => item.campaign))]);
-
       })
       .catch((error) => {
         console.log("error:", error);
@@ -28,7 +31,8 @@ const AppealsPage = () => {
   useEffect(()=>{
     console.log('campaigns:', campaigns);
     console.log('loadData:', loadData);
-  }, [campaigns, loadData])
+    console.log('appealsType:', appealsType);
+  }, [campaigns, loadData, appealsType])
 
   return (
     <div className=" p-32">
