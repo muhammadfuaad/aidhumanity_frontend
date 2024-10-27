@@ -16,16 +16,17 @@ function Login({setShowForm}) {
   const [password, setPassword] = useState('')
   const [name, setName] = useState("");
 
-  const [formType, setFormType] = useState('Sign Up')
+  const [formType, setFormType] = useState(true)
 
   const handleSubmit =() => {
-    if (formType === "Sign Up") {
+    if (formType === false) {
       axiosInstance
         .post("/user/register", { name, email, password })
         .then((response) => {
-          setFormType("Log In")
+          setFormType(!formType)
           console.log("response:", response);
           localStorage.setItem("token", response.data.accessToken);
+
           toast.success(response?.data?.message || "Registered successfully!");
         })
         .catch((error) => {
@@ -38,6 +39,8 @@ function Login({setShowForm}) {
         .then((response) => {
           console.log("response:", response);
           localStorage.setItem("token", response.data.accessToken);
+          localStorage.setItem("userId", response.data.userId);
+
           toast.success(response?.data?.message || "Logged in successfully!");
         })
         .catch((error) => {
@@ -54,37 +57,11 @@ function Login({setShowForm}) {
         <Mobile_header title="Login" display_logout="hidden" />
       </div>
       <div className="hidden sm:block">
-        <Header title={formType} setShowForm={setShowForm} />
+        <Header title={formType !== true ? "Sign Up" : "Log In"} setShowForm={setShowForm} />
       </div>
       <div className="px-6 flex flex-col sm:px-14">
-        <div className="flex flex-col gap-4">
-          <button
-            className="w-full py-6 text-[1.4rem] font-semibold text-white bg-primary-medium rounded-xl
-              flex space-x-4 justify-center items-center"
-          >
-            <img src={Facebook}></img>
-            <span>Continue with Facebook</span>
-          </button>
-          <button
-            className="w-full py-6 text-[1.4rem] font-semibold text-white bg-black rounded-xl
-              flex space-x-4 justify-center items-center"
-          >
-            <img src={Apple}></img>
-            <span>Continue with Apple</span>
-          </button>
-          <button
-            className="w-full py-6 text-[1.4rem] font-semibold text-spanish-gray bg-transparent outline
-              outline-spanish-gray rounded-xl flex justify-center items-center space-x-4"
-          >
-            <img src={Google}></img>
-            <span>Continue with Google</span>
-          </button>
-        </div>
-        <p className="self-center text-[1.2rem] font-normal tracking-[-0.3px] text-body my-6">
-          OR
-        </p>
         <div className="flex flex-col gap-6">
-          {formType === "Sign Up" && 
+          {formType !== true && 
             <div className="relative">
               <input
                 type="text"
@@ -155,13 +132,14 @@ function Login({setShowForm}) {
           text-white bg-primary rounded-xl"
             onClick={handleSubmit}
           >
-            {formType}
+            {formType !== true ? "Sign Up" : "Log In"}
           </button>
         </div>
       </div>
       <div className="bg-primary-light px-16 py-12 mt-32">
         <p className="text-[1.6rem] font-bold tracking-[-0.4px] text-black">
-          {formType === "Sign Up" ? "Already have an account?" : "Don’t have an account?"} <span className="text-primary">{formType}</span>.
+          {formType !== true ? "Already have an account?" : "Don’t have an account?"} 
+          <span className="text-primary" onClick={()=> setFormType(!formType)}>{formType !== true ? "Log In" : "Sign Up"}</span>.
         </p>
       </div>
     </div>

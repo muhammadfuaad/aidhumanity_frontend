@@ -32,15 +32,18 @@ const AppealsPage = () => {
     <div className=" p-32">
       {/* <p className="text-[3.2rem] text-black font-semibold mb-8">All Appeals</p> */}
       <Dropdown value={appealsType} onChange={(e) => setAppealsType(e.value)} options={campaigns}  optionLabel="name" 
-        placeholder="All Appeals" className="w-fit md:w-14rem text-[3.2rem] text-black font-semibold p-6 border border-[#e6e6e6] rounded-lg" />
+        placeholder="All Appeals" className="w-fit md:w-14rem text-[2.6rem] text-black font-semibold p-6 border 
+        border-[#e6e6e6] rounded-lg" 
+        panelClassName="custom-dropdown-panel"
+      />
       <div className="flex gap-4 justify-between flex-wrap">
-        {appeals.map((appeal) => {
-          return (
-            <div className="w-[30%] h-1/2">
+        {appeals.map((appeal) => (
+          appeal.campaign === appealsType || appealsType === "All Appeals" ? (
+            <div className="w-[30%] h-1/2" key={appeal._id}>
               <Appeal_card appeal={appeal} />
             </div>
-          );
-        })}
+          ) : null
+        ))}
       </div>
     </div>
   );

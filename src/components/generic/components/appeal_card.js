@@ -3,10 +3,22 @@ import User from "../../icons/user-circle-black.svg";
 import Circular_progress_bar_2 from "../../dashboard/circular_progress_bar_2";
 import { useNavigate } from "react-router-dom";
 import {truncateString} from "../../utils/commonMethods"
+import axiosInstance from "../../utils/axiosInstance";
 function Appeal_card({appeal}) {
-  const {_id, title, description, targeted_amount, collected_amount, image, campaign, category, total_supporters} = appeal
+  const userId = localStorage.getItem('userId')
+  const {_id, title, description, targeted_amount, collected_amount, image, campaign, category, total_supporters, author} = appeal
   const [display, setDisplay] = React.useState(false);
   const navigate = useNavigate()
+
+  const deleteAppeal = () => {
+    axiosInstance
+      .delete(`/appeals/delete/${_id}`).then((response) => {
+        console.log("response:", response);
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      });
+  }
 
   return (
     <div className="w-full bg-white shadow-md rounded-3xl relative border border-blue-500">
@@ -64,6 +76,12 @@ function Appeal_card({appeal}) {
             onClick={()=> navigate(`/appeal_view/${_id}`)}>
             Read More
           </p>
+          {author === userId && 
+            <p className="text-[1.2rem] font-semibold tracking-[-0.18px] text-primary-dark cursor-pointer"
+              onClick={deleteAppeal}>
+              Delete
+            </p>
+          }
           <button className="px-12 h-20 py-6 uppercase text-[1.4rem] font-semibold text-white bg-primary rounded-xl">
             Donate Now
           </button>
