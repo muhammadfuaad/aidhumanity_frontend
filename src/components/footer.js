@@ -12,8 +12,10 @@ import Percent from "./icons/100percent.svg"
 import Footer_logo from "./icons/footer-logo.svg"
 import Phone from "./icons/phone-volume.svg"
 import arrow_right from "./icons/arrow-right-white.svg"
+import { useNavigate } from "react-router-dom";
 
-function Footer() {
+function Footer({campaigns}) {
+  const navigate= useNavigate()
   return (
     <footer className="bg-primary-dark p-5 px-48 pt-16 relative overflow-hidden">
       <img src="./icons/footer-background-logo.svg" className="absolute right-0 top-0 z-10"></img>
@@ -68,13 +70,17 @@ function Footer() {
           <div className="flex flex-col basis-[20%]">
             <span className="text-[1.4rem] font-semibold tracking-[-0.21px] text-white leading-[1.6rem] mb-8">APPEALS</span>
             <ul className="text-[1.6rem] font-medium tracking-[-0.24px] text-[#8892ac] leading-[3rem]">
+              {campaigns.map((item)=> {
+                return (
+                  <li
+                    onClick={()=>(navigate('/appeals', { state: {name: item.name}}))} 
+                    className="hover:underline cursor-pointer"
+                  >
+                    {item.name}
+                  </li>
+                )
+              })}
               
-              <li><a href="#" className="hover:underline">Build a Mosque</a></li>
-              <li><a href="#" className="hover:underline">Disaster & Emergency</a></li>
-              <li><a href="#" className="hover:underline">Appeals</a></li>
-              <li><a href="#" className="hover:underline">Water For All</a></li>
-              <li><a href="#" className="hover:underline">Sponsor an Orphan</a></li>
-              <li><a href="#" className="hover:underline">Hunger Appeal</a></li>
             </ul>
           </div>
     

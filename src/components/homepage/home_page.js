@@ -118,8 +118,8 @@ function Home_page() {
       <Ways/>
       <Faq/>
       <Contact/>
-      <div className="hidden sm:block">< Footer /></div>
-      <div className="sm:hidden">< Footer_mobile /></div>
+      <div className="hidden sm:block">< Footer campaigns={campaigns} /></div>
+      <div className="sm:hidden">< Footer_mobile campaigns={campaigns} /></div>
     </section>
   );
 }

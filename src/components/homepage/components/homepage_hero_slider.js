@@ -4,7 +4,7 @@ import {ReactComponent as Arrow} from "../../icons/arrow-right-props.svg"
 
 function Homepage_hero_slider(props) {
   return (
-    <div className="hero flex flex-col px-8 sm:px-80 py-48 sm:py-20 h-[60vh] sm:h-[70vh] relative">
+    <div className="hero flex flex-col px-8 sm:px-80 mt-36 pt-80 pb-48 sm:py-20 h-[60vh] sm:h-[70vh] relative">
       <img src={decorators} className="absolute right-0 bottom-40 hidden sm:block"></img>
       
       <div className="absolute top-80 right-[30rem] hidden sm:block"><Percentage_vertical/></div>

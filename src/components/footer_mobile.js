@@ -12,12 +12,14 @@ import Percent from "./icons/100percent.svg"
 import Footer_logo from "./icons/footer-logo.svg"
 import Phone from "./icons/phone-volume.svg"
 import arrow_right from "./icons/arrow-right-white.svg"
+import { useNavigate } from "react-router-dom";
 
-function Footer_mobile() {
+function Footer_mobile({campaigns}) {
+  const navigate = useNavigate()
+  
   return (
     <footer className="bg-primary-dark p-5 px-6 pt-16 relative overflow-hidden">
       <img src="./icons/footer-background-logo.svg" className="absolute right-0 top-0 z-10"></img>
-
       <div className="">
         <p className="text-[1.2rem] font-normal tracking-[0.06px] text-white leading-[1.5rem] mb-4 opacity-50">Aid Humanity is a UK registered charity 1184639.</p>
         <div className="flex flex-col gap-12">
@@ -68,12 +70,16 @@ function Footer_mobile() {
             <div className="flex flex-col w-1/2">
               <span className="text-[1.4rem] font-semibold tracking-[-0.21px] text-white leading-[1.6rem] mb-8">APPEALS</span>
               <ul className="text-[1.6rem] font-medium tracking-[-0.24px] text-[#8892ac] leading-[3rem]">
-                <li><a href="#" className="hover:underline">Build a Mosque</a></li>
-                <li><a href="#" className="hover:underline">Disaster & Emergency</a></li>
-                <li><a href="#" className="hover:underline">Appeals</a></li>
-                <li><a href="#" className="hover:underline">Water For All</a></li>
-                <li><a href="#" className="hover:underline">Sponsor an Orphan</a></li>
-                <li><a href="#" className="hover:underline">Hunger Appeal</a></li>
+                {campaigns.map((item)=> {
+                return (
+                  <li
+                    onClick={()=>(navigate('/appeals', { state: {name: item.name}}))} 
+                    className="hover:underline cursor-pointer"
+                  >
+                    {item.name}
+                  </li>
+                )
+              })}
               </ul>
             </div>
           </div>

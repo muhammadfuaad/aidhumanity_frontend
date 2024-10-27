@@ -18,12 +18,12 @@ function Generic_header_1() {
 
   const navigate = useNavigate()
   return (
-    <div className="">
+    <div className="bg-white fixed left-0 right-0 z-10">
       <div className="flex justify-between px-48 text-[1.4rem] font-medium tracking-[-0.21px] text-[#999] py-4 border-b border-platinum">
-        <a href="#" className="flex gap-2">
+        <span className="flex gap-2">
           <p>En</p>
           <img src="./icons/drop-down.svg" className="w-4"></img>
-        </a>
+        </span>
 
         <div className="flex gap-4">
           <a href="#">Latest News</a>
@@ -41,7 +41,7 @@ function Generic_header_1() {
       </div>
 
       <div className="px-48">
-        <div className="flex justify-between py-8 relative">
+        <div className="flex justify-between py-4 relative">
           { appealsOptions ? <div className="absolute top-[100%] z-10 w-full"><Appeals_options/></div> : null }
           { zakatOptions ? <div className="absolute top-[100%] z-10 w-full"><Zakat_options/></div> : null }
           { emergencyOptions ? <div className="absolute top-[100%] z-10 w-full"><Emergency_options/></div> : null }
@@ -51,7 +51,7 @@ function Generic_header_1() {
 
           <div className="flex justify-between w-[65%]">
             <div className="relative">
-              <img src="./icons/primary-horizontal-logo.png" className="w-[23rem]"></img>
+              <img src="./icons/primary-horizontal-logo.png" className="w-[17rem]"></img>
               {/* <div className="bg-platinum h-20 w-[1px] absolute top-0 -right-24"></div> */}
             </div>
             <ul className="w-[65%] flex justify-between items-center text-[1.8rem] font-semibold tracking-[-0.27px] text-black
