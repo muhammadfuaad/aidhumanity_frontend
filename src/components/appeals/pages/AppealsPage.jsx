@@ -8,6 +8,7 @@ const AppealsPage = () => {
   const [appeals, setAppeals] = useState([]);
   const [appealsType, setAppealsType] = useState("All Appeals")
   const [campaigns, setCampaigns] = useState([])
+  const [loadData, setLoadData] = useState(false)
 
   useEffect(() => {
     axiosInstance
@@ -22,11 +23,12 @@ const AppealsPage = () => {
       .catch((error) => {
         console.log("error:", error);
       });
-  }, []);
+  }, [loadData]);
 
   useEffect(()=>{
     console.log('campaigns:', campaigns);
-  }, [campaigns])
+    console.log('loadData:', loadData);
+  }, [campaigns, loadData])
 
   return (
     <div className=" p-32">
@@ -39,8 +41,8 @@ const AppealsPage = () => {
       <div className="flex gap-4 justify-between flex-wrap">
         {appeals.map((appeal) => (
           appeal.campaign === appealsType || appealsType === "All Appeals" ? (
-            <div className="w-[30%] h-1/2" key={appeal._id}>
-              <Appeal_card appeal={appeal} />
+            <div className="w-[32%] h-1/2" key={appeal._id}>
+              <Appeal_card appeal={appeal} setLoadData={setLoadData} />
             </div>
           ) : null
         ))}

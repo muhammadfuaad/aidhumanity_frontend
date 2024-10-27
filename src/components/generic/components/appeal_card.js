@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import User from "../../icons/user-circle-black.svg";
 import Circular_progress_bar_2 from "../../dashboard/circular_progress_bar_2";
 import { useNavigate } from "react-router-dom";
 import {truncateString} from "../../utils/commonMethods"
 import axiosInstance from "../../utils/axiosInstance";
-function Appeal_card({appeal}) {
+import { ToastContainer, toast } from "react-toastify";
+
+function Appeal_card({appeal, setLoadData}) {
   const userId = localStorage.getItem('userId')
   const {_id, title, description, targeted_amount, collected_amount, image, campaign, category, total_supporters, author} = appeal
   const [display, setDisplay] = React.useState(false);
@@ -14,6 +16,8 @@ function Appeal_card({appeal}) {
     axiosInstance
       .delete(`/appeals/delete/${_id}`).then((response) => {
         console.log("response:", response);
+        setLoadData((prevLoadData)=> !prevLoadData)
+        toast.success('Appeal deleted successfully')
       })
       .catch((error) => {
         console.log("error:", error);
@@ -87,6 +91,7 @@ function Appeal_card({appeal}) {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
