@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Facebook from "./icons/facebook.png"
 import Twitter from "./icons/twitter.png"
 import Instagram from "./icons/instagram.png"
@@ -13,9 +13,24 @@ import Footer_logo from "./icons/footer-logo.svg"
 import Phone from "./icons/phone-volume.svg"
 import arrow_right from "./icons/arrow-right-white.svg"
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "./utils/axiosInstance";
 
-function Footer({campaigns}) {
+function Footer() {
   const navigate= useNavigate()
+  const [campaigns, setCampaigns] = useState([])
+  useEffect(() => {
+    axiosInstance
+      .get("/appeals/campaigns")
+      .then((response) => {
+        console.log("response:", response);
+        setCampaigns(response.data.data);
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      });
+  }, []);
+
+  useEffect(()=>{console.log('campaigns:', campaigns);}, [campaigns])
   return (
     <footer className="bg-primary-dark p-5 px-48 pt-16 relative overflow-hidden">
       <img src="./icons/footer-background-logo.svg" className="absolute right-0 top-0 z-10"></img>
@@ -76,7 +91,7 @@ function Footer({campaigns}) {
                     onClick={()=>(navigate('/appeals', { state: {name: item.name}}))} 
                     className="hover:underline cursor-pointer"
                   >
-                    {item.name}
+                    {item}
                   </li>
                 )
               })}

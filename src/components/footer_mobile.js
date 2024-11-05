@@ -13,10 +13,25 @@ import Footer_logo from "./icons/footer-logo.svg"
 import Phone from "./icons/phone-volume.svg"
 import arrow_right from "./icons/arrow-right-white.svg"
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axiosInstance from "./utils/axiosInstance";
 
-function Footer_mobile({campaigns}) {
+function Footer_mobile() {
   const navigate = useNavigate()
-  
+  const [campaigns, setCampaigns] = useState([])
+
+  useEffect(() => {
+    axiosInstance
+      .get("/appeals/campaigns")
+      .then((response) => {
+        console.log("response:", response);
+        setCampaigns(response.data.data);
+      })
+      .catch((error) => {
+        console.log("error:", error);
+      });
+  }, []);
+
   return (
     <footer className="bg-primary-dark p-5 px-6 pt-16 relative overflow-hidden">
       <img src="./icons/footer-background-logo.svg" className="absolute right-0 top-0 z-10"></img>

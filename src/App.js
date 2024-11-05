@@ -88,6 +88,7 @@ import Homepage_slider from './components/homepage_slider';
 import Homepage_hero_slider_collection from './components/homepage_hero_slider_collection';
 import Appeals_slick from './components/appeals_slick';
 import AppealsPage from './components/appeals/pages/AppealsPage';
+import Stripe from './components/generic/components/Stripe';
 
 function App() {
   return (
@@ -206,6 +207,8 @@ function App() {
         element={<Homepage_hero_slider_collection />}
       />
       <Route path="/appeals_slick" element={<Appeals_slick />} />
+      <Route path="/stripe" element={<Stripe />} />
+
     </Routes>
   );
 }

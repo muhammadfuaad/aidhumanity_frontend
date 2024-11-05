@@ -59,7 +59,7 @@ function Home_page() {
     ))
   }, [appeals])
 
-  useEffect(()=>{console.log('successfulAppeals:', successfulAppeals);}, [successfulAppeals])
+  // useEffect(()=>{console.log('successfulAppeals:', successfulAppeals);}, [successfulAppeals])
 
   return (
     <section className="overflow-hidden">

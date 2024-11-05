@@ -63,11 +63,11 @@ function Story_page() {
         <div className="flex flex-col px-8 sm:px-48 bg-[#f9f9f9]">
           <p className="self-center generic-subheading my-20">Recent Appeals</p>
 
-          <div className="flex gap-12">
+          {/* <div className="flex gap-12">
             <Appeal_card />
             <Appeal_card />
             <Appeal_card />
-          </div> 
+          </div>  */}
           <div className='flex my-20 self-end'>
             <button className="px-10 py-6 self-end text-[1.4rem] font-semibold text-primary-dark bg-transparent outline
               outline-spanish-gray rounded-xl">View All</button>
