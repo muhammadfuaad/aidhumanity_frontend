@@ -4,8 +4,25 @@ import Circular_chart from "./circular_chart";
 import Line_chart from "./line_chart";
 import Table_mobile from './table_mobile';
 import Copyright from "../copyright";
+import { useEffect, useState } from "react";
+import axiosInstance from "../utils/axiosInstance";
 
 function Dashboard() {
+  const [userAppeals, setUserAppeals] = useState([])
+  useEffect(() => {
+  axiosInstance
+    .get("/appeals/user_appeals")
+    .then((response) => {
+      console.log("response:", response);
+      setUserAppeals(response.data)
+    })
+    .catch((error) => {
+      console.log("error:", error);
+    });
+}, []);
+
+useEffect(()=>{console.log('userAppeals:', userAppeals);}, [userAppeals])
+
   return (
     <div className="flex flex-col space-y-6">
       <div className="rounded-2xl bg-white">
@@ -34,10 +51,12 @@ function Dashboard() {
           </div>
           <div className="p-8">
             <div className="flex flex-col space-y-6">
-              <Appeal_status_1 title="Pakistan Floods" category="Disaster & Emergency Appeals" amount_raised="£113"
+              {/* <Appeal_status_1 title="Pakistan Floods" category="Disaster & Emergency Appeals" amount_raised="£113"
               amount_remaining="£243" supporters="12" eligibility="Z" />
               <Appeal_status_1 title="Water Hands Pumps" category="Water for All" amount_raised="£142"
-              amount_remaining="£234" supporters="4" eligibility="Z" />
+              amount_remaining="£234" supporters="4" eligibility="Z" /> */}
+              <Appeal_status_1 title="Pakistan Floods" category="Disaster & Emergency Appeals" amount_raised="£113"
+              amount_remaining="£243" supporters="12" eligibility="Z" />
             </div>
           </div>
         </div>

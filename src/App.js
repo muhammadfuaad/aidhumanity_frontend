@@ -89,6 +89,7 @@ import Homepage_hero_slider_collection from './components/homepage_hero_slider_c
 import Appeals_slick from './components/appeals_slick';
 import AppealsPage from './components/appeals/pages/AppealsPage';
 import Stripe from './components/generic/components/Stripe';
+import AppealForm from './components/dashboard/AppealForm';
 
 function App() {
   return (
@@ -141,7 +142,8 @@ function App() {
       />
       <Route path="/security_page" element={<Security_page />} />
       <Route path="/fundraising_page" element={<Fundraising_page />} />
-      <Route path="/dashboard_page" element={<Dashboard_page />} />
+      <Route path="/dashboard" element={<Dashboard_page />} />
+      <Route path="/dashboard/create_appeal" element={<AppealForm />} />
       <Route path="/badge_bronze" element={<Badge_bronze />} />
       {/* appeals */}
       <Route path="/appeal_media_page" element={<Appeal_media_page />} />

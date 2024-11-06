@@ -612,3 +612,8 @@ h2 {
   background-color: #f0f0f0;
   /* Change color on hover */
 }
+
+.required:after {
+  content: " *";
+  color: red;
+}
