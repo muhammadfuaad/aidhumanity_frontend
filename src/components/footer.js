@@ -23,7 +23,7 @@ function Footer() {
       .get("/appeals/campaigns")
       .then((response) => {
         console.log("response:", response);
-        setCampaigns(response.data.data);
+        setCampaigns(response.data.campaigns);
       })
       .catch((error) => {
         console.log("error:", error);
