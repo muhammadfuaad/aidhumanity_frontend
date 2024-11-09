@@ -1,7 +1,6 @@
 import React from 'react'
 
 const InputDropdown = ({title, dropdownItems, name, value, handleChange, required = true}) => {
-
   return (
     <div className="relative">
       <select name={name} value={value} onChange={handleChange} className="focus:outline-none focus:bg-transparent block 

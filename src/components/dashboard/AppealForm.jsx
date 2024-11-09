@@ -10,7 +10,7 @@ const AppealForm = () => {
       .get("/appeals/campaigns")
       .then((response) => {
         console.log("response:", response);
-        setCampaigns(response.data.data);
+        setCampaigns(response.data.campaigns);
       })
       .catch((error) => {
         console.log("error:", error);
@@ -88,7 +88,7 @@ const AppealForm = () => {
             <Input_2 title="End Date" type="date" name="end_date" value={formData.end_date} handleChange={handleChange} />
           </div>
           <div className='w-[49%]'>
-            <InputDropdown title="Category" dropdownItems = {["Sadqah", "Zakat"]} name="category" value={formData.category} 
+            <InputDropdown title="Category" dropdownItems = {["Sadaqah", "Zakat"]} name="category" value={formData.category} 
               handleChange={handleChange} />
           </div>
           <div className='w-[49%]'>

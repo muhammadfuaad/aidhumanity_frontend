@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
   timeout: 100000,
   headers: {
-    "Content-Type": "application/json", // Default header for requests
+    "Content-Type": 'multipart/form-data', // Default header for requests
   },
 });
 
