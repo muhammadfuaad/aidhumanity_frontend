@@ -14,19 +14,24 @@ function Appeal_view() {
   const params = useParams();
   const {_id} = params
   const appealId = _id
+  console.log('appealId:', appealId);
   console.log("params:", params);
   const [appeal, setAppeal] = useState({});
+  
+  useEffect(()=>{
+    axiosInstance.get(`/appeals/${appealId}`).then((response) => {
+      console.log("response:", response);
+      setAppeal(response.data.data);
+    })
+    .catch((error) => {
+      console.log("error:", error);
+    });
+  }, [appealId])
+  
 
   useEffect(() => {
-    axiosInstance
-      .get(`/appeals/${appealId}`).then((response) => {
-        console.log("response:", response);
-        setAppeal(response.data.data);
-      })
-      .catch((error) => {
-        console.log("error:", error);
-      });
-  }, []);
+    console.log('appeal:', appeal)
+  }, [appeal])
   const [visibility, setVisibility] = React.useState(false);
   
   return (

@@ -617,3 +617,7 @@ h2 {
   content: " *";
   color: red;
 }
+
+.appeal-card {
+  width: 30% !important;
+}

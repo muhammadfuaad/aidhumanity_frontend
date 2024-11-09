@@ -40,7 +40,12 @@ function General_slick({ card, number_of_elements, appeals }) {
       </button>
       <Slider {...settings}>
         {appeals.map((item) => {
-          return <Appeal_card appeal={item} />;
+          return (
+            <div className="w-1/3 appeal-card">
+              <Appeal_card appeal={item} />
+            </div>
+          ) 
+          
         })}
       </Slider>
     </div>
