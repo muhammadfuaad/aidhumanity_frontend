@@ -15,7 +15,7 @@ const AppealsPage = () => {
   console.log('state:', state);
   useEffect(()=>{setAppealsType(state?.name || "All Appeals")}, [state])
   
-  useEffect(() => {
+  const fetchAppeals = () => {
     axiosInstance
       .get("/appeals")
       .then((response) => {
@@ -26,6 +26,9 @@ const AppealsPage = () => {
       .catch((error) => {
         console.log("error:", error);
       });
+  }
+  useEffect(() => {
+    fetchAppeals()
   }, [loadData]);
 
   useEffect(()=>{
@@ -46,7 +49,7 @@ const AppealsPage = () => {
         {appeals.map((appeal) => (
           appeal.campaign === appealsType || appealsType === "All Appeals" ? (
             <div className="w-[32%] h-1/2" key={appeal._id}>
-              <Appeal_card appeal={appeal} setLoadData={setLoadData} />
+              <Appeal_card appeal={appeal} setLoadData={setLoadData} fetchAppeals={fetchAppeals} />
             </div>
           ) : null
         ))}

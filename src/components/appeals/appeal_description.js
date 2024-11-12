@@ -2,7 +2,7 @@ import {ReactComponent as User_circle} from "../../icons/user-circle.svg";
 
 function Appeal_description({appeal}) {
   const {campaign, category, total_supporters, collected_amount, raised_amount, title, description, image} = appeal
-  const authorName = appeal.author.name
+  const authorName = appeal.author?.name
   return (
     <div className="flex flex-col bg-white rounded-3xl">
       <div className="py-8 px-8">

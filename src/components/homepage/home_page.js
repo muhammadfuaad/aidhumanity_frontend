@@ -35,11 +35,8 @@ function Home_page() {
   const [appeals, setAppeals] = useState([])
   const [campaigns, setCampaigns] = useState([]);
   const [successfulAppeals, setSuccessfulAppeals] = useState([]);
-
-
-  useEffect(()=>{
-    axiosInstance
-      .get("/appeals")
+  const fetchAppeals = () => {
+    axiosInstance.get("/appeals")
       .then((response) => {
         console.log("response:", response);
         setAppeals(response.data.data)
@@ -48,6 +45,10 @@ function Home_page() {
       .catch((error) => {
         console.log("error:", error);
       });
+  }
+
+  useEffect(()=>{
+    fetchAppeals()
   }, [])
 
   useEffect(()=>{
@@ -68,7 +69,7 @@ function Home_page() {
       <Homepage_slick appeals={appeals}/>
       <div className="flex flex-col px-8 sm:px-48 bg-[#f9f9f9] mb-[-35rem] sm:mb-[-27rem] pb-40">
         <p className="self-center text-center sm:self-start generic-subheading mt-16 sm:mt-36 mb-16 sm:mb-28">Appeals <span className="font-medium">that need your backing</span></p>
-        <General_slick card=<Appeal_card/> number_of_elements={appeals.length} appeals={appeals}/> 
+        <General_slick card=<Appeal_card/> number_of_elements={appeals.length} appeals={appeals} fetchAppeals={fetchAppeals}/> 
         <button className="self-center sm:hidden mt-20 px-10 py-6 text-[1.4rem] font-semibold text-primary-dark bg-transparent outline
         outline-spanish-gray rounded-xl sm:self-auto">View All</button>        
       </div>

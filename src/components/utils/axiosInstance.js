@@ -5,11 +5,12 @@ const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
   timeout: 100000,
   headers: {
-    "Content-Type": 'multipart/form-data', // Default header for requests
+    "Content-Type": 'multipart/form-data',
+    // "Content-Type": 'application/json',
   },
 });
 
-// Add a request interceptor to include authorization token if needed
+// Add a request interceptor to include authorization token and set Content-Type dynamically
 axiosInstance.interceptors.request.use(
   (config) => {
     // Get the token from localStorage, or any other secure storage mechanism
@@ -19,6 +20,13 @@ axiosInstance.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
+    // // Remove Content-Type if the data is FormData to allow axios to set it automatically
+    // if (config.data instanceof FormData) {
+    //   delete config.headers["Content-Type"]; // Let axios set it for FormData
+    // } else {
+    //   config.headers["Content-Type"] = "application/json";
+    // }
 
     return config;
   },
@@ -30,14 +38,14 @@ axiosInstance.interceptors.request.use(
 // Add a response interceptor to handle responses globally
 axiosInstance.interceptors.response.use(
   (response) => {
-    // You can modify the response if needed
+    // Modify the response if needed
     return response;
   },
   (error) => {
     // Handle response errors, e.g., token expiration, server errors
     if (error.response?.status === 401) {
-      // Handle unauthorized errors, e.g., redirect to login
       console.log("Unauthorized access, redirecting to login...");
+      // Optionally, handle redirection or token refresh logic here
     }
     return Promise.reject(error);
   }

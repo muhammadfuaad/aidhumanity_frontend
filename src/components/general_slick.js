@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Appeal_card from "./generic/components/appeal_card";
 import { useNavigate } from "react-router-dom";
 
-function General_slick({ card, number_of_elements, appeals }) {
+function General_slick({ card, number_of_elements, appeals, fetchAppeals }) {
   const navigate = useNavigate();
 
   const settings = {
@@ -41,8 +41,8 @@ function General_slick({ card, number_of_elements, appeals }) {
       <Slider {...settings}>
         {appeals.map((item) => {
           return (
-            <div className="w-1/3 appeal-card">
-              <Appeal_card appeal={item} />
+            <div className="appeal-card">
+              <Appeal_card appeal={item} fetchAppeals={fetchAppeals} />
             </div>
           ) 
           

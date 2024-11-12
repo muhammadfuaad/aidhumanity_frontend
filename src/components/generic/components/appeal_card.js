@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import User from "../../icons/user-circle-black.svg";
 import Circular_progress_bar_2 from "../../dashboard/circular_progress_bar_2";
 import { useNavigate } from "react-router-dom";
@@ -6,18 +6,22 @@ import {truncateString} from "../../utils/commonMethods"
 import axiosInstance from "../../utils/axiosInstance";
 import { ToastContainer, toast } from "react-toastify";
 
-function Appeal_card({appeal, setLoadData}) {
+function Appeal_card({appeal, setLoadData, fetchAppeals}) {
+  // console.log('appeal:', appeal);
   const userId = localStorage.getItem('userId')
   const {_id, title, description, targeted_amount, collected_amount, image, campaign, category, total_supporters, author} = appeal
-  const [display, setDisplay] = React.useState(false);
+  const [display, setDisplay] = useState(false);
   const navigate = useNavigate()
 
   const deleteAppeal = () => {
     axiosInstance
       .delete(`/appeals/delete/${_id}`).then((response) => {
         console.log("response:", response);
-        setLoadData((prevLoadData)=> !prevLoadData)
-        toast.success('Appeal deleted successfully')
+        toast.dismiss()
+        toast.success(response.data.message)
+        setTimeout(()=>{
+          fetchAppeals()
+        }, 3000)
       })
       .catch((error) => {
         console.log("error:", error);
@@ -36,6 +40,9 @@ function Appeal_card({appeal, setLoadData}) {
         <div className="py-12 border-b-2 border-platinum">
           <p className="text-[2.2rem] font-bold tracking-[-0.55px] text-black mb-8">
             {title}
+          </p>
+          <p className="text-[2.2rem] font-bold tracking-[-0.55px] text-black mb-8">
+            {author}
           </p>
           <p className="text-[1.6rem] font-normal tracking-[-0.4px] leading-[2.4rem] h-[6rem] text-body">
             {truncateString(description, 100)}
