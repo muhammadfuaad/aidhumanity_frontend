@@ -14,9 +14,13 @@ function Appeal_view() {
   const params = useParams();
   const {_id} = params
   const appealId = _id
-  console.log('appealId:', appealId);
-  console.log("params:", params);
+  // console.log('appealId:', appealId);
+  // console.log("params:", params);
   const [appeal, setAppeal] = useState({});
+  const [isEdit, setIsEdit] =useState(false)
+  const [visibility, setVisibility] = React.useState(false);
+  const [editedDescription, setEditedDescription] =useState("")
+  const [editedTitle, setEditedTitle] = useState("")
   
   useEffect(()=>{
     axiosInstance.get(`/appeals/${appealId}`).then((response) => {
@@ -32,7 +36,17 @@ function Appeal_view() {
   useEffect(() => {
     console.log('appeal:', appeal)
   }, [appeal])
-  const [visibility, setVisibility] = React.useState(false);
+  
+
+  const handleSubmit = () => {
+    console.log('editedTitle:', editedTitle);
+    axiosInstance.put('http://localhost:8000/api/appeals/create_appeal', {editedDescription, editedTitle})
+      .then((response)=> {
+        console.log('response:', response);
+      }).catch((error)=> {
+        console.log('error:', error);
+      })
+  }
   
   return (
     <div className="flex flex-col bg-[#f5f6f7] min-h-screen pb-40">
@@ -50,10 +64,11 @@ function Appeal_view() {
           < Appeal_status targeted_amount={appeal.targeted_amount} collected_amount={appeal.collected_amount} total_supporters={appeal.total_supporters}/>
         </div>
         <div className='sm:px-0 sm:w-[70%] sm:order-1'>
-          < Appeal_description appeal={appeal}/>
+          < Appeal_description appeal={appeal} isEdit={isEdit} editedTitle={editedTitle} editedDescription={editedDescription}
+            setEditedTitle={setEditedTitle} setEditedDescription={setEditedDescription}/>
         </div>
       </div>
-      < Fixed_navigator />
+      < Fixed_navigator campaign={appeal.campaign} isEdit={isEdit} setIsEdit={setIsEdit} handleSubmit={handleSubmit} />
     </div>
   )
 }

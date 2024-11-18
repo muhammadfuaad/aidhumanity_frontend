@@ -1,8 +1,14 @@
+import { useState } from "react";
 import {ReactComponent as User_circle} from "../../icons/user-circle.svg";
+import axiosInstance from "../utils/axiosInstance";
 
-function Appeal_description({appeal}) {
+function Appeal_description({appeal, isEdit, editedTitle, setEditedTitle, editedDescription, setEditedDescription}) {
   const {campaign, category, total_supporters, collected_amount, raised_amount, title, description, image} = appeal
   const authorName = appeal.author?.name
+  setEditedDescription(description)
+  setEditedTitle(title)
+  console.log('editedDescription:', editedDescription);
+
   return (
     <div className="flex flex-col bg-white rounded-3xl">
       <div className="py-8 px-8">
@@ -10,9 +16,12 @@ function Appeal_description({appeal}) {
           {campaign}
         </p>
         <div className="flex justify-between items-center">
-          <p className="text-[2.6rem] font-bold tracking-[-0.65px] text-black leading-[3rem] sm:text-[3.6rem] sm:tracking-[-0.54px] sm:leading-[4rem] mb-12 sm:mb-4">
-            {title}
-          </p>
+          {isEdit ? <textarea value={editedTitle} onChange={(e)=> setEditedTitle(e.target.value)}></textarea> 
+            : 
+            <p className="text-[2.6rem] font-bold tracking-[-0.65px] text-black leading-[3rem] sm:text-[3.6rem] sm:tracking-[-0.54px] sm:leading-[4rem] mb-12 sm:mb-4">
+              {title}
+            </p>
+          }
           <div className="bg-amber rounded-full w-10 h-10 hidden sm:flex justify-center items-center">
             <p className="text-[1.2rem] font-bold text-black">
               {category === "Zakat" ? "Z" : "S"}
@@ -36,7 +45,8 @@ function Appeal_description({appeal}) {
         <p className="text-[1.6rem] font-bold tracking-[-0.4px] text-black mb-8">
           Description
         </p>
-        <p className="mb-8 sm:mb-0 text-[1.4rem]">{description}</p>
+        {isEdit ? <textarea value={editedDescription} onChange={(e)=> setEditedDescription(e.target.value)}></textarea> 
+          : <p className="mb-8 sm:mb-0 text-[1.4rem]">{description}</p>}
       </div>
     </div>
   );
